@@ -1,0 +1,29 @@
+supervisord_user: root
+supervisord_inethttp: False
+supervisord_interface_ip: 127.0.0.1
+supervisord_port: 9001
+supervisor_program: []
+
+# supervisor_program example:
+#
+#supervisor_program:
+# - name: test123
+#   command: logger test123
+#   # Optional value, default 1
+#   numprocs: 1
+#   # Optional value, default true
+#   autostart: true
+#   # Optional value, default unexpected
+#   autorestart: unexpected
+#   # Optional value, default 1
+#   startsecs: 1
+#   # Optional value, default www-data
+#   user: www-data
+#   # Optional value, default no cd
+#   directory: /var/www/
+#   # Optional value, default no stopwaitsecs
+#   stopwaitsecs: 10
+#   # Optional value, default syslog
+#   stdout_logfile: syslog
+#   # Optional value, default syslog
+#   stderr_logfile: syslog

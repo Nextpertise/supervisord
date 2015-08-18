@@ -1,0 +1,24 @@
+;
+; WARNING: THIS CONFIG IS MANAGED BY TINTIN! ( The ansible environment )
+;
+
+{% for item in supervisor_program %}
+; {{ item.name }}
+[program:{{ item.name }}]
+command={{ item.command }}
+process_name=%(program_name)s_%(process_num)02d
+numprocs={{ item.numprocs|default('1') }}
+autostart={{ item.autostart|default('true') }}
+autorestart={{ item.autorestart|default('unexpected') }}
+startsecs={{ item.startsecs|default('1') }}
+user={{ item.user|default('www-data') }}
+{% if item.directory is defined %}
+directory={{ item.directory }}
+{% endif %}
+{% if item.stopwaitsecs is defined %}
+stopwaitsecs={{ item.stopwaitsecs }}
+{% endif %}
+stdout_logfile={{ item.stdout_logfile|default('syslog') }}
+stderr_logfile={{ item.stderr_logfile|default('syslog') }}
+
+{% endfor %}

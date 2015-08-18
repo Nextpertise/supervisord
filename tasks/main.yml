@@ -1,0 +1,34 @@
+---
+
+- name: "remove repository instance supervisord"
+  apt: name=supervisor state=absent update_cache=yes
+  notify: restart supervisord
+
+- name: "install python-pip"
+  apt: name=python-pip state=present install_recommends=no
+
+- name: "install supervisord via pip"
+  pip: name=supervisor state=present version=3.1.3
+
+- name: sent init.d script
+  template: src=init_supervisord.j2 dest=/etc/init.d/supervisor owner=root group=root mode=0755
+  notify:
+    - restart supervisord
+    - insserv supervisord
+
+- name: "Create config directory"
+  file: path=/etc/supervisor/conf.d/ state="directory"
+
+- name: "Create log directory"
+  file: path=/var/log/supervisor/ state="directory"
+
+- name: sent main config
+  template: src=supervisord.conf.j2 dest=/etc/supervisor/supervisord.conf owner=root group=root mode=0644
+  notify: restart supervisord
+
+- name: "Sent program.conf"
+  template: src=program.conf.j2 dest=/etc/supervisor/conf.d/program.conf
+  notify: restart supervisord
+
+- name: configure logrotate
+  copy: src=supervisord_logrotate dest=/etc/logrotate.d/supervisord
