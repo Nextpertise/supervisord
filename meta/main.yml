@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Teun Ouwehand
+  description: Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems.
+  company: Nextpertise B.V.
+  license: license GPLv2
+  min_ansible_version: 1.2
+  platforms:
+   - name: Debian
+     versions:
+     - squeeze
+     - wheezy
+     - jessie
+  categories:
+  - monitoring
+  - system
+dependencies: [] 
