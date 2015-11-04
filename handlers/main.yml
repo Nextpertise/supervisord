@@ -6,4 +6,4 @@
   service: name=supervisor state=restarted
 
 - name: insserv supervisord
-  shell: insserv supervisor
+  shell: /usr/lib/insserv/insserv supervisor
