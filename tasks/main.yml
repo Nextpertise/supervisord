@@ -32,3 +32,6 @@
 
 - name: configure logrotate
   copy: src=supervisord_logrotate dest=/etc/logrotate.d/supervisord
+
+- name: Start Supervisor
+  service: name=supervisor state=started
