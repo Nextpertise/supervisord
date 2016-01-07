@@ -9,6 +9,9 @@
 
 - name: "install supervisord via pip"
   pip: name=supervisor state=present version=3.1.3
+  
+- name: "force meld3 dependecy version for supervisor"
+  pip: name=meld3 state=present version=0.6.9
 
 - name: sent init.d script
   template: src=init_supervisord.j2 dest=/etc/init.d/supervisor owner=root group=root mode=0755
